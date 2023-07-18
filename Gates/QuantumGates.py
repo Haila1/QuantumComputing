@@ -25,7 +25,7 @@ def ANDgate(qc):
     qc.ccx(0, 1, 2)
     qc.measure(2,0)
 
-    return  qc.draw('mpl')
+    return  qc # qc.draw('mpl')
 
 def ORgate(qc):
     qc.ccx(0,1,2)
