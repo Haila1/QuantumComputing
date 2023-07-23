@@ -26,16 +26,20 @@ import random
 def oracle(qc , c):
     if c==1:
         qc.i([0,1])
+        print(f'case1: constant zero: ')
     if c==2:
         qc.i(0)
         qc.x(1)
+        print(f'case2: constant 1:  ')
 
     if c==3:
         qc.cx(0, 1)
+        print(f'case3: balanced:  ')
 
     if c==4:
          qc.cx(0, 1)
          qc.x(1)
+         print(f'case4: balanced:  ')
     
     return qc
  
@@ -49,36 +53,24 @@ def output(qc , c):
     job = execute(qc, Aer.get_backend('qasm_simulator'))
     output = job.result().get_counts()
     out = list(output)[0]
+    #cercuit titling 
     qctitle = qc.draw('mpl')
     qctitle.axes[0].set_title(f"case {c} oracle ")
     
     return out 
-
 
 qc = QuantumCircuit(2,1)
 qc.x(1)  
 qc.h([0,1])
 qc.barrier([0,1])
 
-#random number between 1 and 4
 c =  random.randint(1, 4)
 
-#oracle function call 
 qcc=oracle(qc , c)
-
-#composing 2 cercuits
 qc.compose(qcc)
-
-#output 
 out=output(qc , c)
 
-print(f'case{c}:  {out}')
-
-
-
-
-
-    
+print(f'output:  {out}')
 
 
 

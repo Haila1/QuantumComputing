@@ -27,24 +27,25 @@ import random
 
 def case1(qc):
     qc.i([0,1])
-    
+    print(f'case1: constant zero: ')
     return qc
     
 def case2(qc):
     qc.i(0)
     qc.x(1)
+    print(f'case2: constant 1:  ')
    
     return qc
 
 def case3(qc):
     qc.cx(0, 1)
-    
+    print(f'case3: balanced:  ')
     return qc
 
 def case4(qc):
     qc.cx(0, 1)
     qc.x(1)
-    
+    print(f'case4: balanced:  ')
     return qc
     
 
@@ -56,6 +57,7 @@ def output(qc , c):
     job = execute(qc, Aer.get_backend('qasm_simulator'))
     output = job.result().get_counts()
     out = list(output)[0]
+    #cercuit titling 
     qctitle = qc.draw('mpl')
     qctitle.axes[0].set_title(f"case {c} oracle ")
     
@@ -89,7 +91,7 @@ qc.compose(qcc)
 #output 
 out=output(qc , c)
 
-print(f'case{c}:  {out}')
+print(f'output:  {out}')
 
 
 
