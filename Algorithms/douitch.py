@@ -70,31 +70,28 @@ qc.barrier([0,1])
 
 
 
+#random number between 1 and 4
 c =  random.randint(1, 4)
+
+#funcction call
 if c==1:
-    qc1=case1(qc)
-    qc.compose(qc1)
-    out=output(qc, c)
-
-    print(f'constant zero:  {out}')
+    qcc=case1(qc)
 if c==2:
-    qc2=case2(qc)
-    qc.compose(qc2)
-    out=output(qc, c)
-    print(f'cconstant 1:  {out}')
+    qcc=case2(qc)
 if c==3:
-    qc3=case3(qc)
-    qc.compose(qc3)
-    out=output(qc, c)
-    print(f'balanced:   {out}')
-
+    qcc=case3(qc)
 if c==4:
-    qc4=case4(qc)
-    qc.compose(qc4)
-    out=output(qc , c)
-    print(f'case4:   {out}')
-    
-    
+    qcc=case4(qc)
+
+#composing 2 cercuits
+qc.compose(qcc)
+
+#output 
+out=output(qc , c)
+
+print(f'case{c}:  {out}')
+
+
 
 
 

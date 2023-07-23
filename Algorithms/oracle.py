@@ -54,34 +54,30 @@ def output(qc , c):
     
     return out 
 
+
 qc = QuantumCircuit(2,1)
 qc.x(1)  
 qc.h([0,1])
 qc.barrier([0,1])
 
+#random number between 1 and 4
 c =  random.randint(1, 4)
-if c==1:
-    qc1=oracle(qc , c)
-    qc.compose(qc1)
-    out=output(qc , c)
 
-    print(f'constant zero:  {out}')
-if c==2:
-    qc2=oracle(qc , c)
-    qc.compose(qc2)
-    out=output(qc , c)
-    print(f'cconstant 1:  {out}')
-if c==3:
-    qc3=oracle(qc , c)
-    qc.compose(qc3)
-    out=output(qc , c)
-    print(f'balanced:   {out}')
+#oracle function call 
+qcc=oracle(qc , c)
 
-if c==4:
-    qc4=oracle(qc , c)
-    qc.compose(qc4)
-    out=output(qc , c)
-    print(f'case4:   {out}')
+#composing 2 cercuits
+qc.compose(qcc)
+
+#output 
+out=output(qc , c)
+
+print(f'case{c}:  {out}')
+
+
+
+
+
     
 
 
