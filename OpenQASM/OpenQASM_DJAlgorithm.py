@@ -63,7 +63,6 @@ cr[1] = measure qr[1];
 qc=qiskit.qasm3.loads(DJ)
 qc.draw('mpl')
 
-#backend = execute(qc, Aer.get_backend('qasm_simulator')).result()       -> qasm_simulator error -> no if in qasm_simulator
 backend = execute(qc, Aer.get_backend('aer_simulator')).result()
 count = backend.get_counts()
 
